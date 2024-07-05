@@ -28,7 +28,3 @@ df_gen_organized <- df_gen[order(-df_gen_$la3)]
 
 gen_organized
 
-
-Revisar el video 
-# https://www.youtube.com/watch?v=tlf6wYJrwKY
-
