@@ -1,17 +1,17 @@
 #############################################################################
-# #Codigo 1 import data to python 
-# import pandas as pd
+#Codigo 1 import data to python
+import pandas as pd
 
-# #Upload CSV file
-# file_path = "C:/Users/Pipe/Downloads/SC_mRNAsdata1.csv"
-# df = pd.read_csv(file_path)
+#Upload CSV file
+file_path = "C:/Users/Pipe/Downloads/SC_mRNAsdata1.csv"
+df = pd.read_csv(file_path)
 
-# #Display the first rows of the dataframe
-# print(df.head())
+#Display the first rows of the dataframe
+print(df.head())
 #############################################################################
 
 #############################################################################
-# #Create the excel file 
+# #Create the excel file
 # import pandas as pd
 
 # # Load CSV file
@@ -28,40 +28,40 @@
 #############################################################################
 
 #############################################################################
-# #Code transpone el dataset
-# import pandas as pd
+#Code transpone el dataset
+import pandas as pd
 
-# # Cargar el archivo CSV
-# file_path_csv = "C:/Users/Pipe/Downloads/SC_mRNAsdata1.csv"
-# df = pd.read_csv(file_path_csv)
+# Cargar el archivo CSV
+file_path_csv = "C:/Users/Pipe/Downloads/SC_mRNAsdata1.csv"
+df = pd.read_csv(file_path_csv)
 
-# # Transpose the dataframe
-# df_transposed = df.transpose()
+# Transpose the dataframe
+df_transposed = df.transpose()
 
-# # Define output paths
-# file_path_excel_transposed = "C:/Users/Pipe/Downloads/SC_mRNAsdataTrans.xlsx"
-# file_path_csv_transposed = "C:/Users/Pipe/Downloads/SC_mRNAsdataTrans.csv"
+# Define output paths
+file_path_excel_transposed = "C:/Users/Pipe/Downloads/SC_mRNAsdataTrans.xlsx"
+file_path_csv_transposed = "C:/Users/Pipe/Downloads/SC_mRNAsdataTrans.csv"
 
-# # Save the transposed dataframe in multiple Excel sheets
-# max_columns = 16384
-# num_sheets = (df_transposed.shape[1] // max_columns) + 1
+# Save the transposed dataframe in multiple Excel sheets
+max_columns = 16384
+num_sheets = (df_transposed.shape[1] // max_columns) + 1
 
-# with pd.ExcelWriter(file_path_excel_transposed, engine='openpyxl') as writer:
-#     for i in range(num_sheets):
-#         start_col = i * max_columns
-#         end_col = (i + 1) * max_columns
-#         sheet_name = f'Sheet_{i+1}'
-#         df_transposed.iloc[:, start_col:end_col].to_excel(writer, sheet_name=sheet_name, index=False)
+with pd.ExcelWriter(file_path_excel_transposed, engine='openpyxl') as writer:
+    for i in range(num_sheets):
+        start_col = i * max_columns
+        end_col = (i + 1) * max_columns
+        sheet_name = f'Sheet_{i+1}'
+        df_transposed.iloc[:, start_col:end_col].to_excel(writer, sheet_name=sheet_name, index=False)
 
-# #Save the transposed dataframe as a CSV file
-# df_transposed.to_csv(file_path_csv_transposed, index=False)
+#Save the transposed dataframe as a CSV file
+df_transposed.to_csv(file_path_csv_transposed, index=False)
 
-# print(f"Archivo Excel transpuesto guardado en: {file_path_excel_transposed}")
-# print(f"Archivo CSV transpuesto guardado en: {file_path_csv_transposed}")
+print(f"Archivo Excel transpuesto guardado en: {file_path_excel_transposed}")
+print(f"Archivo CSV transpuesto guardado en: {file_path_csv_transposed}")
 #############################################################################
 
 #############################################################################
-# #Codigo que cuenta los repetidos 
+# #Codigo que cuenta los repetidos
 # import pandas as pd
 # # Cargar el archivo CSV
 # file_path_csv_transposed = "C:/Users/Pipe/Downloads/SC_mRNAsdataTrans.csv"
@@ -79,7 +79,7 @@
 #############################################################################
 
 #############################################################################
-# #Codigo borra las columnas 
+# #Codigo borra las columnas
 # import pandas as pd
 
 # # Cargar el archivo CSV
@@ -90,7 +90,7 @@
 # print("DataFrame original:")
 # print(df.head())
 
-# # Delete the columns in positions 1 and 2 
+# # Delete the columns in positions 1 and 2
 # columns_to_remove = [1, 2]
 # df = df.drop(df.columns[columns_to_remove], axis=1)
 
@@ -109,7 +109,7 @@
 # print(df.head())
 
 #############################################################################
-# # #Codigo borra filas 
+# # #Codigo borra filas
 # import pandas as pd
 
 # # Cargar el archivo CSV
@@ -139,7 +139,7 @@
 
 
 #############################################################################
-# #Limpia las columnas que tengan 0 datos 
+# #Limpia las columnas que tengan 0 datos
 # import pandas as pd
 # # Cargar el archivo CSV con la primera fila como nombres de columna
 # file_path_csv = "C:/Users/Pipe/Downloads/SC_mRNAsdataTransAdj.csv"
@@ -170,3 +170,45 @@ df = pd.read_csv(csv_file)
 # Write DataFrame to Excel file
 excel_file = "C:/Users/Pipe/Downloads/SC_mRNAsdataTransAdj_cleaned.xlsx"
 df.to_excel(excel_file, index=False)
+
+#############################################################################
+# import pandas as pd
+# # Read the CSV file into a DataFrame
+# mi_dataset = pd.read_csv('C:/Users/Pipe/Downloads/SC_mRNAsdataTransAdj_cleaned.csv')
+# # Drop columns that contain any NA values
+# mi_dataset = mi_dataset.dropna(axis=1)
+# # Save the modified DataFrame to a new CSV file
+# mi_dataset.to_csv('C:/Users/Pipe/Downloads/SC_mRNAsdataTransAdj_cleaned.csv', index=False)
+# # Print the DataFrame to verify the changes
+# print(mi_dataset)
+#############################################################################
+# import pandas as pd
+
+# # Read the CSV file into a DataFrame
+# mi_dataset = pd.read_csv('C:/Users/Pipe/Downloads/SC_mRNAsdataTransAdj_cleaned.csv')
+# # Keep columns with at least 17 non-null values
+# mi_dataset = mi_dataset.dropna(thresh=17, axis=1)
+# # Identify columns with exactly 3 non-null values
+# columns_to_drop = mi_dataset.columns[mi_dataset.isnull().sum() == (mi_dataset.shape[0] - 3)]
+# # Drop columns with exactly 3 non-null values
+# mi_dataset = mi_dataset.drop(columns=columns_to_drop)
+# # Save the modified DataFrame to a new CSV file
+# mi_dataset.to_csv('SC_mRNAsdataTransAdj_2.0.csv', index=False)
+
+
+# #############################################################################
+# # Remove the last three characters from each element in the first column
+# mi_dataset['col1'] = mi_dataset['col1'].str[:-3]
+# # Print the dataset to verify the changes
+# print(mi_dataset)
+import pandas as pd
+# Read the first CSV file into a DataFrame
+dataset1 = pd.read_csv('dataset1.csv')
+# Read the second CSV file into a DataFrame
+dataset2 = pd.read_csv('dataset2.csv')
+# Perform intersection based on the first column 'NAME'
+intersection = pd.merge(dataset1, dataset2, on='NAME')
+# Save the intersection result to a new CSV file
+intersection.to_csv('intersection.csv', index=False)
+# Print the intersection DataFrame to verify the changes
+print(intersection)
