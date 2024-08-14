@@ -30,12 +30,12 @@ def calculate():
     global df
     if df is not None:
         # Selecciona las filas desde la 0 hasta la 21 (incluyendo todas las columnas)
-        df_filtered = df.iloc[0:22, :]
-        # Calcula el promedio de cada columna en el DataFrame filtrado (excluyendo las dos primeras columnas)
-        averages = df_filtered.iloc[:, 2:].mean()
+        df_filtered = df.iloc[0:22, 2:]
+        # Calcula el promedio de cada columna en el DataFrame filtrado (excluyendo solo la primera columna)
+        averages = df_filtered.mean()
 
-        # Inserta los promedios en el DataFrame, manteniendo las dos primeras columnas vacías
-        df.loc['Promedio'] = pd.concat([pd.Series(['', '']), averages], axis=0).values
+        # Inserta los promedios en el DataFrame, manteniendo solo la primera columna vacía
+        df.loc['Promedio'] = pd.concat([pd.Series(['']), averages], axis=0).values
 
         # Renderiza la plantilla HTML con la tabla del DataFrame, incluyendo la fila de promedios
         return render_template('index.html', tables=[df.to_html(classes='data')])
