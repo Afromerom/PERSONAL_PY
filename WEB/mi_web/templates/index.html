@@ -11,11 +11,20 @@
         <input type="file" name="file">
         <input type="submit" value="Upload">
     </form>
+
     {% if tables %}
         <h2>CSV Content:</h2>
         {% for table in tables %}
             {{ table|safe }}
         {% endfor %}
+
+        <form method="post" action="/calcular-promedio">
+            <input type="submit" value="Calcular Promedio">
+        </form>
+
+        {% if promedio %}
+            <h3>El promedio total de las filas es: {{ promedio }}</h3>
+        {% endif %}
     {% endif %}
 </body>
 </html>
