@@ -35,7 +35,7 @@ def calculate():
         averages = df_filtered.mean()
 
         # Inserta los promedios en el DataFrame, dejando solo la columna 'NAME' vacía
-        df.loc['Promedio'] = pd.concat([pd.Series(['']), averages], axis=0).values
+        df.loc['Average'] = pd.concat([pd.Series(['']), averages], axis=0).values
 
         # Renderiza la plantilla HTML con la tabla del DataFrame, incluyendo la fila de promedios
         return render_template('index.html', tables=[df.to_html(classes='data')])
