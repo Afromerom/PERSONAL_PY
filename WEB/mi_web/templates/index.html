@@ -3,36 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título de la página -->
     <title>Upload CSV</title>
+    
+    <!-- Estilos CSS para la página -->
     <style>
+        /* Estilo para la tabla */
         table.data {
-            width: 100%;
-            border-collapse: collapse;
+            width: 100%; /* La tabla ocupa el 100% del ancho disponible */
+            border-collapse: collapse; /* Las celdas de la tabla se dibujan sin espacio entre ellas */
+            margin-bottom: 20px; /* Espacio inferior entre la tabla y otros elementos */
         }
+        /* Estilo para las celdas de la tabla */
         table.data th, table.data td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: right;
+            border: 1px solid black; /* Bordes de las celdas */
+            padding: 8px; /* Espaciado interno de las celdas */
+            text-align: right; /* Alineación del texto a la derecha */
         }
+        /* Estilo para las cabeceras de las columnas */
         table.data th {
-            background-color: #f2f2f2;
+            background-color: #4CAF50; /* Fondo verde para las cabeceras */
+            color: white; /* Texto en blanco para las cabeceras */
+            text-align: center; /* Alineación del texto en el centro */
+        }
+        /* Estilo para el cuerpo de la página */
+        body {
+            font-family: Arial, sans-serif; /* Fuente de la página */
+            background-color: #f4f4f4; /* Fondo gris claro */
+            margin: 20px; /* Márgenes de la página */
+        }
+        /* Estilo para el título principal */
+        h1 {
+            color: #333; /* Color del texto */
+            text-align: center; /* Alineación del título en el centro */
+        }
+        /* Estilo para los formularios */
+        form {
+            text-align: center; /* Alineación del formulario en el centro */
+            margin-bottom: 20px; /* Espacio inferior entre el formulario y otros elementos */
+        }
+        /* Estilo para los botones de envío */
+        input[type="submit"] {
+            background-color: #4CAF50; /* Fondo verde para los botones */
+            color: white; /* Texto en blanco */
+            border: none; /* Sin bordes */
+            padding: 10px 20px; /* Espaciado interno del botón */
+            margin: 5px; /* Espacio alrededor del botón */
+            cursor: pointer; /* Cambia el cursor al pasar por encima */
+            border-radius: 5px; /* Bordes redondeados */
+        }
+        /* Efecto hover para los botones */
+        input[type="submit"]:hover {
+            background-color: #45a049; /* Cambia el color del fondo al pasar por encima */
+        }
+        /* Estilo para los subtítulos */
+        h2 {
+            color: #555; /* Color del texto */
+            text-align: center; /* Alineación del subtítulo en el centro */
+            margin-top: 40px; /* Espacio superior antes del subtítulo */
         }
     </style>
 </head>
 <body>
+    <!-- Título principal de la página -->
     <h1>Upload your CSV file</h1>
+
+    <!-- Formulario para subir el archivo CSV y calcular los promedios -->
     <form method="post" enctype="multipart/form-data">
-        <input type="file" name="file">
-        <input type="submit" value="Upload">
+        <input type="file" name="file"> <!-- Input para seleccionar el archivo CSV -->
+        <input type="submit" value="Upload"> <!-- Botón para subir el archivo -->
         {% if tables %}
-            <input type="submit" formaction="/calculate" value="Calculate Average">
+            <input type="submit" formaction="/calculate" value="Calculate Average"> <!-- Botón para calcular el promedio si ya se subió un archivo -->
         {% endif %}
     </form>
 
+    <!-- Sección que muestra el contenido de la tabla si existe -->
     {% if tables %}
-        <h2>CSV Content:</h2>
+        <h2>CSV Content:</h2> <!-- Subtítulo para el contenido del CSV -->
         {% for table in tables %}
-            {{ table|safe }}
+            {{ table|safe }} <!-- Inserta la tabla generada dinámicamente -->
         {% endfor %}
     {% endif %}
 </body>
