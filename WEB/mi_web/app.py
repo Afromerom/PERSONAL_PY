@@ -32,7 +32,7 @@ def calculate():
         # Selecciona las filas desde la 0 hasta la 21 (incluyendo todas las columnas)
         df_filtered = df.iloc[0:22, :]
         # Calcula el promedio de cada columna en el DataFrame filtrado (excluyendo las dos primeras columnas)
-        averages = df_filtered.iloc[:, 2:].mean()
+        averages = df_filtered.iloc[:, 1:].mean()
 
         # Inserta los promedios en el DataFrame, manteniendo las dos primeras columnas vacías
         df.loc['Promedio'] = pd.concat([pd.Series(['', '']), averages], axis=0).values
