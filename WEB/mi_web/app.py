@@ -16,7 +16,7 @@ def index():
             return 'No selected file'
         if file and file.filename.endswith('.csv'):
             df = pd.read_csv(file)
-            return render_template('index.html', tables=[df.to_html()], titles=df.columns.values)
+            return render_template('index.html', tables=[df.to_html(classes='data')], titles=df.columns.values)
     return render_template('index.html')
 
 @app.route('/calculate', methods=['POST'])
@@ -26,8 +26,10 @@ def calculate():
         # Excluir las dos primeras columnas y calcular el promedio por columna
         df_filtered = df.iloc[:, 2:]
         averages = df_filtered.mean()
-        # Añadir el promedio como una nueva fila al final del DataFrame
-        df.loc['Promedio'] = pd.concat([df.iloc[:, :2], pd.DataFrame(averages).T], axis=1).iloc[0]
+
+        # Añadir la fila de promedios correctamente
+        df.loc['Promedio'] = pd.concat([pd.Series(['Promedio', '']), averages], axis=0).values
+
         return render_template('index.html', tables=[df.to_html(classes='data')])
     return redirect(url_for('index'))
 
