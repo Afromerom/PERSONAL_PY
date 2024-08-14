@@ -4,6 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload CSV</title>
+    <style>
+        table.data {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table.data th, table.data td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: right;
+        }
+        table.data th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
     <h1>Upload your CSV file</h1>
@@ -20,15 +34,6 @@
         {% for table in tables %}
             {{ table|safe }}
         {% endfor %}
-    {% endif %}
-
-    {% if averages is defined %}
-        <h2>Averages of each row (excluding the first row and the first two columns):</h2>
-        <ul>
-        {% for avg in averages %}
-            <li>{{ avg }}</li>
-        {% endfor %}
-        </ul>
     {% endif %}
 </body>
 </html>
