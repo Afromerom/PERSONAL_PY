@@ -3,8 +3,7 @@ import pandas as pd
 
 app = Flask(__name__)
 
-# Variable global para almacenar el DataFrame cargado
-df = None
+df = None  # Variable global para almacenar el DataFrame cargado
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -30,12 +29,12 @@ def index():
 def calculate():
     global df
     if df is not None:
-        # Selecciona las filas desde la 0 hasta la 21 y excluye las dos primeras columnas para calcular el promedio
-        df_filtered = df.iloc[0:22, 2:]
-        # Calcula el promedio de cada columna en el DataFrame filtrado
-        averages = df_filtered.mean()
+        # Selecciona las filas desde la 0 hasta la 21 (incluyendo todas las columnas)
+        df_filtered = df.iloc[0:22, :]
+        # Calcula el promedio de cada columna en el DataFrame filtrado (excluyendo las dos primeras columnas)
+        averages = df_filtered.iloc[:, 2:].mean()
 
-        # Crea una nueva fila para los promedios; las primeras dos celdas estarán vacías
+        # Inserta los promedios en el DataFrame, manteniendo las dos primeras columnas vacías
         df.loc['Promedio'] = pd.concat([pd.Series(['', '']), averages], axis=0).values
 
         # Renderiza la plantilla HTML con la tabla del DataFrame, incluyendo la fila de promedios
