@@ -23,9 +23,10 @@ def index():
 def calculate():
     global df
     if df is not None:
-        # Calcular el promedio de todas las filas
-        average = df.mean().mean()
-        return render_template('index.html', tables=[df.to_html()], average=average)
+        # Excluir la primera fila y las dos primeras columnas, luego calcular el promedio
+        df_filtered = df.iloc[1:, 2:]
+        averages = df_filtered.mean(axis=1).tolist()  # Calcular el promedio fila por fila
+        return render_template('index.html', tables=[df.to_html()], averages=averages)
     return redirect(url_for('index'))
 
 if __name__ == "__main__":

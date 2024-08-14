@@ -10,6 +10,9 @@
     <form method="post" enctype="multipart/form-data">
         <input type="file" name="file">
         <input type="submit" value="Upload">
+        {% if tables %}
+            <input type="submit" formaction="/calculate" value="Calculate Average">
+        {% endif %}
     </form>
 
     {% if tables %}
@@ -17,16 +20,15 @@
         {% for table in tables %}
             {{ table|safe }}
         {% endfor %}
-
-        <form method="post" action="/calculate">
-            <input type="hidden" name="file" value="{{ file }}">
-            <input type="submit" value="Calculate Average">
-        </form>
     {% endif %}
 
-    {% if average is defined %}
-        <h2>Average of all rows:</h2>
-        <p>{{ average }}</p>
+    {% if averages is defined %}
+        <h2>Averages of each row (excluding the first row and the first two columns):</h2>
+        <ul>
+        {% for avg in averages %}
+            <li>{{ avg }}</li>
+        {% endfor %}
+        </ul>
     {% endif %}
 </body>
 </html>
