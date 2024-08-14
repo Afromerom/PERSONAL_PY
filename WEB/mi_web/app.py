@@ -31,7 +31,7 @@ def calculate():
     global df
     if df is not None:
         # Selecciona las filas desde la 0 hasta la 21 y excluye las dos primeras columnas para calcular el promedio
-        df_filtered = df.iloc[0:22, 2:]
+        df_filtered = df.iloc[0:22, 1:]
         # Calcula el promedio de cada columna en el DataFrame filtrado
         averages = df_filtered.mean()
 
