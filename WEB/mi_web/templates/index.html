@@ -3,10 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Título de la página -->
     <title>Upload CSV</title>
-    
-    <!-- Estilos CSS para la página -->
     <style>
         /* Estilo para la tabla */
         table.data {
@@ -56,6 +53,21 @@
         input[type="submit"]:hover {
             background-color: #45a049; /* Cambia el color del fondo al pasar por encima */
         }
+        /* Estilo para el botón de seleccionar archivo */
+        .custom-file-upload {
+            background-color: #87CEEB; /* Fondo azul claro */
+            color: white; /* Texto en blanco */
+            border: none; /* Sin bordes */
+            padding: 10px 20px; /* Espaciado interno */
+            margin: 5px; /* Espacio alrededor */
+            cursor: pointer; /* Cambia el cursor al pasar por encima */
+            border-radius: 5px; /* Bordes redondeados */
+            display: inline-block; /* Alineación en línea */
+        }
+        /* Oculta el input original para seleccionar archivo */
+        input[type="file"] {
+            display: none; /* Oculta el input original */
+        }
         /* Estilo para los subtítulos */
         h2 {
             color: #555; /* Color del texto */
@@ -70,7 +82,12 @@
 
     <!-- Formulario para subir el archivo CSV y calcular los promedios -->
     <form method="post" enctype="multipart/form-data">
-        <input type="file" name="file"> <!-- Input para seleccionar el archivo CSV -->
+        <!-- Botón personalizado para seleccionar archivo -->
+        <label for="file-upload" class="custom-file-upload">
+            Choose File
+        </label>
+        <input id="file-upload" type="file" name="file"> <!-- Input oculto para seleccionar el archivo CSV -->
+        
         <input type="submit" value="Upload"> <!-- Botón para subir el archivo -->
         {% if tables %}
             <input type="submit" formaction="/calculate" value="Calculate Average"> <!-- Botón para calcular el promedio si ya se subió un archivo -->
