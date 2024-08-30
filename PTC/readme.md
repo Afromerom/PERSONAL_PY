@@ -1,15 +1,21 @@
-
-    <h1>PTC Python Functions - README</h1>
+<h1 align="center"><br>
+PTC Python Functions<br>
+Fase Preliminar 🤖 <br> 
+Un enfoque de causalidad pseudotemporal para identificar interacciones miARN-ARNm durante procesos biológicos<br> 
+AndresMCB <br> 
+2024 📅</h1><br>
+<h2>👨‍💻 Python 🐍</h2>
+    
+<h1>PTC Python Functions - README</h1>
     <p>Este documento proporciona un breve resumen de las funciones convertidas de R a Python
     para el análisis de interacciones miRNA-mRNA utilizando el modelo PTC (Pseudo-Temporal Causality).</p>
 
-    <h2>Funciones Convertidas</h2>
-
+<h2>Funciones Convertidas</h2>
     <p class="function-name">confirmed_from_list</p>
     <p>Devuelve una lista con todas las interacciones miRNA-mRNA confirmadas experimentalmente, 
     basadas en una lista de interacciones inferidas.</p>
 
-    <p class="function-name">confirmed_from_matrix</p>
+<p class="function-name">confirmed_from_matrix</p>
     <p>Filtra una matriz de interacciones miRNA-mRNA para devolver solo aquellas que están presentes 
     en una base de datos de interacciones confirmadas.</p>
 
