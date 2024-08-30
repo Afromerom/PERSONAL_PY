@@ -1,30 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PTC Python Functions - README</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        h1, h2 {
-            color: #0056b3;
-        }
-        p {
-            margin: 10px 0;
-        }
-        .function-name {
-            font-weight: bold;
-            color: #0056b3;
-        }
-    </style>
-</head>
-<body>
+
     <h1>PTC Python Functions - README</h1>
     <p>Este documento proporciona un breve resumen de las funciones convertidas de R a Python
     para el análisis de interacciones miRNA-mRNA utilizando el modelo PTC (Pseudo-Temporal Causality).</p>
@@ -66,5 +40,3 @@
     <p class="function-name">ptc_test_invariance</p>
     <p>Encuentra un conjunto de miRNAs que son padres causales de un mRNA objetivo utilizando 
     pruebas de invariancia secuencial.</p>
-</body>
-</html>
