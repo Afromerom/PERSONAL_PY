@@ -13,7 +13,7 @@ AndresMCB <br>
 <h2>Funciones Convertidas</h2>
 Devuelve una lista con todas las interacciones miRNA-mRNA confirmadas experimentalmente, basadas en una lista de interacciones inferidas.
 ```python
-     class="function-name">confirmed_from_list
+    class="function-name">confirmed_from_list
 ```
 
 <p class="function-name">confirmed_from_matrix</p>
