@@ -13,7 +13,9 @@ Este documento proporciona un breve resumen de las funciones convertidas de R a 
 
 ## Funciones Convertidas
 
-### `confirmed_from_list`
+```python 
+confirmed_from_list
+```
 Devuelve una lista con todas las interacciones miRNA-mRNA confirmadas experimentalmente, basadas en una lista de interacciones inferidas.
 
 ### `confirmed_from_matrix`
