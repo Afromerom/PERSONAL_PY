@@ -64,3 +64,14 @@ def ptc(miRNAs, mRNAs, VIM, nmiR=30, nmR=1500, ngrid=2, alpha=0.02, complements=
 # mRNAs = pd.DataFrame(np.random.rand(500, 1500))  # Ejemplo de datos de mRNAs
 # VIM = np.random.rand(500)  # Pseudotiempo
 # result = ptc(miRNAs, mRNAs, VIM)
+# if __name__ == "__main__":
+#     # Simular datos para miRNAs, mRNAs y VIM
+#     miRNAs = pd.DataFrame(np.random.rand(500, 30))  # Ejemplo de datos de miRNAs
+#     mRNAs = pd.DataFrame(np.random.rand(500, 1500))  # Ejemplo de datos de mRNAs
+#     VIM = np.random.rand(500)  # Pseudotiempo
+
+#     # Llamar a la función PTC
+#     result = ptc(miRNAs, mRNAs, VIM)
+
+#     # Mostrar los resultados
+#     print(result)
