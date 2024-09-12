@@ -5,101 +5,136 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload CSV</title>
     <style>
-        /* Estilo para la tabla */
         table.data {
-            width: 100%; /* La tabla ocupa el 100% del ancho disponible */
-            border-collapse: collapse; /* Las celdas de la tabla se dibujan sin espacio entre ellas */
-            margin-bottom: 20px; /* Espacio inferior entre la tabla y otros elementos */
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
         }
-        /* Estilo para las celdas de la tabla */
         table.data th, table.data td {
-            border: 1px solid black; /* Bordes de las celdas */
-            padding: 8px; /* Espaciado interno de las celdas */
-            text-align: right; /* Alineación del texto a la derecha */
+            border: 1px solid black;
+            padding: 8px;
+            text-align: right;
         }
-        /* Estilo para las cabeceras de las columnas */
         table.data th {
-            background-color: #4CAF50; /* Fondo verde para las cabeceras */
-            color: white; /* Texto en blanco para las cabeceras */
-            text-align: center; /* Alineación del texto en el centro */
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
         }
-        /* Estilo para el cuerpo de la página */
         body {
-            font-family: Arial, sans-serif; /* Fuente de la página */
-            background-color: #f4f4f4; /* Fondo gris claro */
-            margin: 20px; /* Márgenes de la página */
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
         }
-        /* Estilo para el título principal */
         h1 {
-            color: #333; /* Color del texto */
-            text-align: center; /* Alineación del título en el centro */
+            color: #333;
+            text-align: center;
         }
-        /* Estilo para los formularios */
         form {
-            text-align: center; /* Alineación del formulario en el centro */
-            margin-bottom: 20px; /* Espacio inferior entre el formulario y otros elementos */
+            text-align: center;
+            margin-bottom: 20px;
         }
-        /* Estilo para los botones de envío */
         input[type="submit"] {
-            background-color: #4CAF50; /* Fondo verde para los botones */
-            color: white; /* Texto en blanco */
-            border: none; /* Sin bordes */
-            padding: 10px 20px; /* Espaciado interno del botón */
-            margin: 5px; /* Espacio alrededor del botón */
-            cursor: pointer; /* Cambia el cursor al pasar por encima */
-            border-radius: 5px; /* Bordes redondeados */
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
         }
-        /* Efecto hover para los botones */
         input[type="submit"]:hover {
-            background-color: #45a049; /* Cambia el color del fondo al pasar por encima */
+            background-color: #45a049;
         }
-        /* Estilo para el botón de seleccionar archivo */
         .custom-file-upload {
-            background-color: #87CEEB; /* Fondo azul claro */
-            color: white; /* Texto en blanco */
-            border: none; /* Sin bordes */
-            padding: 10px 20px; /* Espaciado interno */
-            margin: 5px; /* Espacio alrededor */
-            cursor: pointer; /* Cambia el cursor al pasar por encima */
-            border-radius: 5px; /* Bordes redondeados */
-            display: inline-block; /* Alineación en línea */
+            background-color: #87CEEB;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            display: inline-block;
         }
-        /* Oculta el input original para seleccionar archivo */
         input[type="file"] {
-            display: none; /* Oculta el input original */
+            display: none;
         }
-        /* Estilo para los subtítulos */
         h2 {
-            color: #555; /* Color del texto */
-            text-align: center; /* Alineación del subtítulo en el centro */
-            margin-top: 40px; /* Espacio superior antes del subtítulo */
+            color: #555;
+            text-align: center;
+            margin-top: 40px;
+        }
+        .progress-bar {
+            width: 100%;
+            background-color: #f3f3f3;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .progress-bar-fill {
+            height: 20px;
+            background-color: #4CAF50;
+            width: 0%;
+            border-radius: 5px;
         }
     </style>
+    <script>
+        function simulateProgress(id, percent) {
+            const progressBar = document.getElementById(id);
+            const fill = progressBar.querySelector('.progress-bar-fill');
+            let width = 0;
+            const interval = setInterval(() => {
+                if (width >= percent) {
+                    clearInterval(interval);
+                } else {
+                    width++;
+                    fill.style.width = width + '%';
+                }
+            }, 20);  // Simulación de progreso en tiempo real
+        }
+
+        function startProgressBars() {
+            if ({{ mrna_loaded|tojson }} && {{ mirna_loaded|tojson }}) {
+                simulateProgress('progress-mrna', 100);
+                simulateProgress('progress-mirna', 100);
+            }
+        }
+
+        window.onload = startProgressBars;
+    </script>
 </head>
 <body>
-    <!-- Título principal de la página -->
-    <h1>Upload your CSV file</h1>
+    <h1>Upload your CSV files</h1>
 
-    <!-- Formulario para subir el archivo CSV y calcular los promedios -->
     <form method="post" enctype="multipart/form-data">
-        <!-- Botón personalizado para seleccionar archivo -->
-        <label for="file-upload" class="custom-file-upload">
-            Choose File
+        <label for="file-upload-mrna" class="custom-file-upload">
+            Choose mRNA File
         </label>
-        <input id="file-upload" type="file" name="file"> <!-- Input oculto para seleccionar el archivo CSV -->
+        <input id="file-upload-mrna" type="file" name="mrna_file">
+
+        <label for="file-upload-mirna" class="custom-file-upload">
+            Choose miRNA File
+        </label>
+        <input id="file-upload-mirna" type="file" name="mirna_file">
         
-        <input type="submit" value="Upload"> <!-- Botón para subir el archivo -->
-        {% if tables %}
-            <input type="submit" formaction="/calculate" value="Calculate Average"> <!-- Botón para calcular el promedio si ya se subió un archivo -->
-        {% endif %}
+        <input type="submit" value="Upload Files">
     </form>
 
-    <!-- Sección que muestra el contenido de la tabla si existe -->
-    {% if tables %}
-        <h2>CSV Content:</h2> <!-- Subtítulo para el contenido del CSV -->
-        {% for table in tables %}
-            {{ table|safe }} <!-- Inserta la tabla generada dinámicamente -->
-        {% endfor %}
+    <!-- Barra de progreso para mRNA -->
+    <div class="progress-bar" id="progress-mrna">
+        <div class="progress-bar-fill"></div>
+    </div>
+
+    <!-- Barra de progreso para miRNA -->
+    <div class="progress-bar" id="progress-mirna">
+        <div class="progress-bar-fill"></div>
+    </div>
+
+    {% if mrna_table and mirna_table %}
+        <h2>mRNA CSV Content:</h2>
+        {{ mrna_table|safe }}
+
+        <h2>miRNA CSV Content:</h2>
+        {{ mirna_table|safe }}
     {% endif %}
 </body>
 </html>

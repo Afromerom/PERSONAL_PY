@@ -1,47 +1,45 @@
 from flask import Flask, render_template, request, redirect, url_for
 import pandas as pd
+import time
 
 app = Flask(__name__)
 
-df = None  # Variable global para almacenar el DataFrame cargado
+# Variables globales para almacenar los datos de mRNA y miRNA
+mrna_data = None
+mirna_data = None
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    global df
+    global mrna_data, mirna_data
     if request.method == 'POST':
-        # Verifica si se ha subido un archivo
-        if 'file' not in request.files:
-            return 'No file part'
-        file = request.files['file']
-        # Verifica si se ha seleccionado un archivo
-        if file.filename == '':
-            return 'No selected file'
-        # Verifica si el archivo subido es un CSV
-        if file and file.filename.endswith('.csv'):
-            # Carga el archivo CSV en un DataFrame
-            df = pd.read_csv(file)
-            # Renderiza la plantilla HTML con la tabla del DataFrame
-            return render_template('index.html', tables=[df.to_html(classes='data')], titles=df.columns.values)
-    # Si no hay un archivo subido, simplemente renderiza la página inicial
-    return render_template('index.html')
+        # Cargar archivo mRNA
+        mrna_file = request.files.get('mrna_file')
+        if mrna_file and mrna_file.filename.endswith('.csv'):
+            mrna_data = pd.read_csv(mrna_file)
 
-@app.route('/calculate', methods=['POST'])
-def calculate():
-    global df
-    if df is not None:
-        # Selecciona las filas desde la 0 hasta la 21 (incluyendo todas las columnas)
-        df_filtered = df.iloc[0:22, 1:]  # Excluye solo la primera columna para el cálculo
-        # Calcula el promedio de cada columna en el DataFrame filtrado
-        averages = df_filtered.mean()
+        # Cargar archivo miRNA
+        mirna_file = request.files.get('mirna_file')
+        if mirna_file and mirna_file.filename.endswith('.csv'):
+            mirna_data = pd.read_csv(mirna_file)
 
-        # Inserta los promedios en el DataFrame, dejando solo la columna 'NAME' vacía
-        df.loc['Average'] = pd.concat([pd.Series(['']), averages], axis=0).values
+        # Verificar si ambos archivos han sido cargados
+        if mrna_data is not None and mirna_data is not None:
+            # Obtener las primeras 5 filas y 4 columnas de ambos archivos
+            mrna_preview = mrna_data.iloc[:5, :4]
+            mirna_preview = mirna_data.iloc[:5, :4]
 
-        # Renderiza la plantilla HTML con la tabla del DataFrame, incluyendo la fila de promedios
-        return render_template('index.html', tables=[df.to_html(classes='data')])
-    # Si no hay un DataFrame cargado, redirige a la página principal
-    return redirect(url_for('index'))
+            # Simular tiempo de carga (progreso de 1 segundo por ejemplo)
+            time.sleep(1)
+
+            # Renderizar las tablas en la página HTML
+            return render_template('index.html',
+                                   mrna_table=mrna_preview.to_html(classes='data', header=True),
+                                   mirna_table=mirna_preview.to_html(classes='data', header=True),
+                                   mrna_loaded=True,
+                                   mirna_loaded=True)
+
+    return render_template('index.html', mrna_loaded=False, mirna_loaded=False)
+
 
 if __name__ == "__main__":
-    # Ejecuta la aplicación Flask en la red local, accesible desde cualquier dispositivo en la misma red
     app.run(host='0.0.0.0', port=5000, debug=True)
