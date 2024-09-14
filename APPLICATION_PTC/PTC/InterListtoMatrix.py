@@ -33,6 +33,6 @@ def interlist_to_matrix(InterList):
 #     'mRNA3': ['miRNA1', 'miRNA4']
 # }
 
-# Convertir la lista a una matriz (DataFrame)
-InterMatrix = interlist_to_matrix(InterList)
-print(InterMatrix)
+# # Convertir la lista a una matriz (DataFrame)
+# InterMatrix = interlist_to_matrix(InterList)
+# print(InterMatrix)

@@ -57,9 +57,9 @@ def ptc(miRNAs, mRNAs, VIM, nmiR=30, nmR=1500, ngrid=2, alpha=0.02, complements=
 # - interlist_to_matrix
 # - ptc_rank_by_context
 
-# Ejemplo de uso
-# miRNAs = pd.DataFrame(np.random.rand(500, 30))  # Ejemplo de datos de miRNAs
-# mRNAs = pd.DataFrame(np.random.rand(500, 1500))  # Ejemplo de datos de mRNAs
-# VIM = np.random.rand(500)  # Ejemplo de pseudotiempo
-# result = ptc(miRNAs, mRNAs, VIM)
-# print(result)
+
+miRNAs = pd.DataFrame(np.random.rand(500, 30))  # Ejemplo de datos de miRNAs
+mRNAs = pd.DataFrame(np.random.rand(500, 1500))  # Ejemplo de datos de mRNAs
+VIM = np.random.rand(500)  # Ejemplo de pseudotiempo
+result = ptc(miRNAs, mRNAs, VIM)
+print(result)
