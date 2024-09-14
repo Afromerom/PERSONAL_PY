@@ -1,44 +1,38 @@
 import numpy as np
+import pandas as pd
 
-def interlist_to_matrix(inter_list):
+def interlist_to_matrix(InterList):
     """
-    Dado un diccionario donde cada elemento es un mRNA que contiene el conjunto de miRNAs
-    (padres) con los que ese mRNA puede interactuar, devuelve una matriz con las interacciones
-    miRNA-mRNA. Cada fila representa una interacción. La primera columna contiene miRNAs y la
-    segunda columna contiene mRNAs.
-
-    :param inter_list: Un diccionario donde cada clave es un mRNA y cada valor es una lista de miRNAs.
-    :return: Una matriz con 2 columnas que contiene las interacciones miRNA-mRNA.
+    Convierte una lista de interacciones miRNA-mRNA en una matriz donde cada fila representa una interacción.
+    
+    :param InterList: Diccionario donde cada clave es un mRNA y el valor es una lista de miRNAs que interactúan con él.
+    :return: DataFrame con dos columnas: la primera contiene los miRNAs, la segunda contiene los mRNAs.
     """
     
-    # Filtrar elementos nulos o vacíos del diccionario
-    inter_list = {k: v for k, v in inter_list.items() if v is not None and len(v) > 0}
+    # Eliminar elementos NaN en la lista
+    InterList = {key: value for key, value in InterList.items() if value is not None}
     
-    # Calcular el número total de interacciones
-    total_interactions = sum(len(v) for v in inter_list.values())
+    # Crear una lista para almacenar las filas de la matriz
+    rows = []
     
-    # Crear una matriz vacía para almacenar las interacciones
-    inter_matrix = np.empty((total_interactions, 2), dtype=object)
+    # Recorrer el diccionario para llenar la matriz
+    for mR, miRs in InterList.items():
+        for miR in miRs:
+            rows.append([miR, mR])
     
-    k = 0  # Contador para las filas de la matriz
-    if len(inter_list) > 0:
-        # Iterar sobre cada mRNA en el diccionario
-        for mRNA, miRNAs in inter_list.items():
-            # Iterar sobre cada miRNA asociado a ese mRNA
-            for miRNA in miRNAs:
-                inter_matrix[k, 0] = miRNA  # Primera columna: miRNA
-                inter_matrix[k, 1] = mRNA   # Segunda columna: mRNA
-                k += 1
+    # Convertir la lista de filas en un DataFrame de pandas con las columnas 'miR' y 'mR'
+    InterMatrix = pd.DataFrame(rows, columns=['miR', 'mR'])
     
-    # Asignar nombres a las columnas de la matriz
-    return inter_matrix
+    return InterMatrix
 
-# Ejemplo de uso
-inter_list_example = {
-    "mRNA1": ["miRNA1", "miRNA2"],
-    "mRNA2": ["miRNA3"],
-    # Agregar más interacciones aquí
-}
+# # Ejemplo de uso
+# # InterList es un diccionario con mRNAs como claves y listas de miRNAs como valores
+# InterList = {
+#     'mRNA1': ['miRNA1', 'miRNA2'],
+#     'mRNA2': ['miRNA3'],
+#     'mRNA3': ['miRNA1', 'miRNA4']
+# }
 
-inter_matrix = interlist_to_matrix(inter_list_example)
-print(inter_matrix)
+# Convertir la lista a una matriz (DataFrame)
+InterMatrix = interlist_to_matrix(InterList)
+print(InterMatrix)

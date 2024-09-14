@@ -28,13 +28,13 @@ def intermatrix_to_list(inter_matrix):
     
     return inter_list
 
-# Ejemplo de uso
-inter_matrix_example = np.array([
-    ["miRNA1", "mRNA1"],
-    ["miRNA2", "mRNA1"],
-    ["miRNA3", "mRNA2"],
-    # Agregar más interacciones aquí
-])
+# # Ejemplo de uso
+# inter_matrix_example = np.array([
+#     ["miRNA1", "mRNA1"],
+#     ["miRNA2", "mRNA1"],
+#     ["miRNA3", "mRNA2"],
+#     # Agregar más interacciones aquí
+# ])
 
-inter_list = intermatrix_to_list(inter_matrix_example)
+inter_list = intermatrix_to_list(intermatrix_to_list)
 print(inter_list)
