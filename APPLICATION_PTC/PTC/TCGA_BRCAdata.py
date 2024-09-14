@@ -19,8 +19,8 @@ Referencias:
 import pandas as pd
 
 # Cargar los datos combinados de miRNAs y mRNAs desde archivos CSV (o similares)
-miRs_data = pd.read_csv('APPLICATION_PTC\DATA\SC_miRNAsdata.csv')  # Datos de miRNAs
-mRNAs_data = pd.read_csv('APPLICATION_PTC\DATA\SC_mRNAsdata.csv')  # Datos de mRNAs
+miRs_data = pd.read_csv('APPLICATION_PTC/DATA/SC_miRNAsdata.csv')  # Datos de miRNAs
+mRNAs_data = pd.read_csv('APPLICATION_PTC/DATA/SC_mRNAsdata.csv')  # Datos de mRNAs
 
 # Crear un diccionario para representar los datos como el formato en R
 TCGA_BRCAdata = {

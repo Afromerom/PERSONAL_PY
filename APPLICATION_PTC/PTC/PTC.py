@@ -14,7 +14,7 @@ def ptc(miRNAs, mRNAs, VIM, nmiR=30, nmR=1500, ngrid=2, alpha=0.02, complements=
 
     # Cargar los puntajes de contexto conservado de TargetScan 7.0 si no se proporciona TScan
     if TScan is None:
-        TScan = pd.read_csv('ruta/a/TScan.csv')  # Ruta al archivo TScan predicho de miRNA-mRNA
+        TScan = pd.read_csv('APPLICATION_PTC/PTC/TScan.py')  # Ruta al archivo TScan predicho de miRNA-mRNA
 
     # Pseudotiempo de los datos de expresión
     seqData = ptc_ptime({'miRs': miRNAs, 'mRNAs': mRNAs}, VIM)
@@ -44,7 +44,7 @@ def ptc(miRNAs, mRNAs, VIM, nmiR=30, nmR=1500, ngrid=2, alpha=0.02, complements=
     
     # Calcular la clasificación de las interacciones usando los puntajes de TargetScan
     Results['Summary'] = interlist_to_matrix(Results['Names'])
-    TS7_0_Conserved_Site_Context_Scores = pd.read_csv('ruta/a/TS7.0_Conserved_Site_Context_Scores.csv')
+    TS7_0_Conserved_Site_Context_Scores = pd.read_csv('APPLICATION_PTC/PTC/TS7_0_Conserved_Site_Context_Scores.py')
     Results['Summary'] = ptc_rank_by_context(TS7_0_Conserved_Site_Context_Scores, Results['Summary'])
     
     return Results

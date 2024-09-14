@@ -20,7 +20,7 @@ Referencias:
 import pandas as pd
 
 # Cargar el dataset de miRNAs desde un archivo CSV (o similar)
-SC_miRNAsdata = pd.read_csv('APPLICATION_PTC\DATA\SC_miRNAsdata.csv')
+SC_miRNAsdata = pd.read_csv('APPLICATION_PTC/DATA/SC_miRNAsdata.csv')
 
 # Mostrar información básica del dataset
 print(SC_miRNAsdata.shape)  # Debería mostrar (2822, 23)

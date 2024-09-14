@@ -20,7 +20,7 @@ Referencias:
 import pandas as pd
 
 # Cargar los datos de miRNAs y sus genes objetivo predichos desde un archivo CSV
-TScan = pd.read_csv('APPLICATION_PTC\DATA\TScan.csv')
+TScan = pd.read_csv('APPLICATION_PTC/DATA/TScan.csv')
 
 # Mostrar la estructura básica del dataset
 print(TScan.shape)
