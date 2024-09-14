@@ -17,7 +17,7 @@ Referencias:
 import pandas as pd
 
 # Cargar los datos de puntajes de contexto conservado de TargetScan desde un archivo CSV
-TS7_0_Conserved_Site_Context_Scores = pd.read_csv('ruta/al/archivo/TS7.0_Conserved_Site_Context_Scores.csv')
+TS7_0_Conserved_Site_Context_Scores = pd.read_csv('APPLICATION_PTC\DATA\TS7.0_Conserved_Site_Context_Scores.csv')
 
 # Mostrar la estructura básica del dataset
 print(TS7_0_Conserved_Site_Context_Scores.shape)

@@ -20,7 +20,7 @@ Referencias:
 import pandas as pd
 
 # Carga del dataset desde un archivo CSV o similar
-SC_mRNAsdata = pd.read_csv('ruta/al/archivo/SC_mRNAsdata.csv')
+SC_mRNAsdata = pd.read_csv('APPLICATION_PTC\DATA\SC_mRNAsdata.csv')
 
 # Información básica del dataset
 print(SC_mRNAsdata.shape)  # Debería mostrar (23285, 24) si los datos están correctamente cargados

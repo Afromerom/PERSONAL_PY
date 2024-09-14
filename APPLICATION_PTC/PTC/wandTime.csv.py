@@ -26,7 +26,7 @@ Referencias:
 import pandas as pd
 
 # Cargar el archivo wandTime.csv
-wandTime = pd.read_csv('ruta/al/archivo/wandTime.csv', header=None)
+wandTime = pd.read_csv('APPLICATION_PTC\DATA\wandTime.csv', header=None)
 
 # Mostrar la estructura del dataset
 print(wandTime.shape)
