@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload CSV</title>
+    <title>PTC</title>  <!-- Título cambiado a "PTC" -->
     <style>
         table.data {
             width: 100%;
@@ -69,6 +69,7 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             margin: 10px 0;
+            position: relative;
         }
         .progress-bar-fill {
             height: 20px;
@@ -76,11 +77,20 @@
             width: 0%;
             border-radius: 5px;
         }
+        .progress-text {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            color: black;
+            font-weight: bold;
+        }
     </style>
     <script>
         function simulateProgress(id, percent) {
             const progressBar = document.getElementById(id);
             const fill = progressBar.querySelector('.progress-bar-fill');
+            const text = progressBar.querySelector('.progress-text');
             let width = 0;
             const interval = setInterval(() => {
                 if (width >= percent) {
@@ -88,6 +98,7 @@
                 } else {
                     width++;
                     fill.style.width = width + '%';
+                    text.textContent = width + '%';
                 }
             }, 20);  // Simulación de progreso en tiempo real
         }
@@ -103,7 +114,7 @@
     </script>
 </head>
 <body>
-    <h1>Upload your CSV files</h1>
+    <h1>PTC</h1>  <!-- Título principal cambiado a "PTC" -->
 
     <form method="post" enctype="multipart/form-data">
         <label for="file-upload-mrna" class="custom-file-upload">
@@ -119,14 +130,18 @@
         <input type="submit" value="Upload Files">
     </form>
 
-    <!-- Barra de progreso para mRNA -->
+    <!-- Leyenda y barra de progreso para mRNA -->
+    <h3>Loading mRNA</h3>
     <div class="progress-bar" id="progress-mrna">
         <div class="progress-bar-fill"></div>
+        <div class="progress-text">0%</div>
     </div>
 
-    <!-- Barra de progreso para miRNA -->
+    <!-- Leyenda y barra de progreso para miRNA -->
+    <h3>Loading miRNA</h3>
     <div class="progress-bar" id="progress-mirna">
         <div class="progress-bar-fill"></div>
+        <div class="progress-text">0%</div>
     </div>
 
     {% if mrna_table and mirna_table %}
