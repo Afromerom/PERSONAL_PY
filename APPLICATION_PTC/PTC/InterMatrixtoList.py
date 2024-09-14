@@ -1,3 +1,4 @@
+import numpy as np
 def intermatrix_to_list(inter_matrix):
     """
     Dada una matriz que contiene interacciones miRNA-mRNA, crea un diccionario donde cada
