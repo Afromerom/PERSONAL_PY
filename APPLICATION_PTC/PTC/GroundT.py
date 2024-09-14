@@ -29,9 +29,9 @@ References:
     Nature methods, Nature Publishing Group, 2015, 12, 697.
 """
 
-# Ejemplo de cómo se podría definir el dataset GroundT en Python
-GroundT = {
-    "VIM": ["miR-200b", "miR-200c", "miR-141"],
-    "ONECUT2": ["miR-9", "miR-124", "miR-29a"],
-    # Agrega más mRNAs y sus correspondientes miRNAs aquí
-}
+# # Ejemplo de cómo se podría definir el dataset GroundT en Python
+# GroundT = {
+#     "VIM": ["miR-200b", "miR-200c", "miR-141"],
+#     "ONECUT2": ["miR-9", "miR-124", "miR-29a"],
+#     # Agrega más mRNAs y sus correspondientes miRNAs aquí
+# }
