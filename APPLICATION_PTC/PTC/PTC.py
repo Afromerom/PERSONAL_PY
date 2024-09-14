@@ -1,26 +1,14 @@
 import numpy as np
 import pandas as pd
+from PTCptime import ptc_ptime
+from getDatabyMAD import get_data_by_mad
+from PTCTestInvariance import ptc_test_invariance
+from ExtractParents import extract_parents
+from InterListtoMatrix import interlist_to_matrix
+from PTCRankByContext import ptc_rank_by_context
 
 
 def ptc(miRNAs, mRNAs, VIM, nmiR=30, nmR=1500, ngrid=2, alpha=0.02, complements=True, explore_all=True, silent=True, TScan=None):
-    """
-    PTC: Estima los padres causales de un conjunto de mRNAs, dado un conjunto de predictores (miRNAs).
-    
-    :param miRNAs: Matriz de expresión génica de miRNAs (filas: muestras, columnas: miRNAs).
-    :param mRNAs: Matriz de expresión génica de mRNAs (filas: muestras, columnas: mRNAs).
-    :param VIM: Expresión de VIM utilizada para calcular VIM_Time (pseudotiempo).
-    :param nmiR: Número de miRNAs a seleccionar como predictores.
-    :param nmR: Número de mRNAs a seleccionar como variables objetivo.
-    :param ngrid: Número de segmentos de los datos de series temporales (por defecto 2).
-    :param alpha: Nivel de significancia para el test estadístico (por defecto 0.02).
-    :param complements: Si es True, cada entorno es comparado con su complemento (por defecto True).
-    :param explore_all: Si es True, se exploran todas las combinaciones de predictores (por defecto True).
-    :param silent: Si es True, se muestran los conjuntos evaluados actualmente (por defecto True).
-    :param TScan: Matriz con relaciones miRNA-mRNA predichas. Si es None, se utiliza un conjunto pre-cargado.
-    
-    :return: Diccionario con los resultados de las interacciones causales inferidas.
-    """
-    
     # Transformar los nombres de mRNAs a mayúsculas
     mRNAs.columns = mRNAs.columns.str.upper()
 
