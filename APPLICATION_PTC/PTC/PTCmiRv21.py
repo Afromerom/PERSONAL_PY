@@ -1,49 +1,25 @@
 import re
-import pandas as pd
-
-def ptc_mirv21(miRs, miRNA_converter):
-    """
-    Toma un vector que contiene los nombres de miRNAs y devuelve
-    la versión de miRBase v21 de los mismos.
-
-    :param miRs: Nombres de miRNAs que se van a cambiar a la versión miRBase v21.
-    :param miRNA_converter: Una función o mapa que convierte los miRNAs a la versión miRBase v21.
-    :return: Un vector con los nombres de los miRNAs en la versión miRBase v21.
-    """
-    
-    # Remover cualquier sufijo después del punto en los nombres de los miRNAs
+def PTC_miRv21(miRs):
+    # Eliminar cualquier parte del nombre después de un punto
     miRs = [re.sub(r"\..*", "", miR) for miR in miRs]
-
-    # Convertir los nombres de miRNAs a la versión v21 utilizando la función o mapa miRNA_converter
-    aux = miRNA_converter(miRs, target_version="v21", exact=True, verbose=True)
-
-    # Verificar si alguna conversión falló
-    na_index = [idx for idx, x in enumerate(aux[:, 1]) if pd.isna(x)]
-
-    # Recuperar los nombres originales de los miRNAs que no se pudieron convertir
-    if len(na_index) > 0:
-        print(f"{len(na_index)} conversions failed, original name is kept")
-        for idx in na_index:
-            aux[idx, 1] = miRs[idx]
-
-    # Si hay múltiples coincidencias de miRNAs, seleccionar solo la primera
-    aux[:, 1] = [re.sub(r"\&.*", "", miR) for miR in aux[:, 1]]
-
-    # Devolver los miRNAs convertidos a la versión v21
-    miRs_v21 = aux[:, 1]
     
-    return miRs_v21
+    # Diccionario de conversiones, a sustituir con un método real para conversión
+    conversion_dict = {
+        'miR-1': 'miR-1-3p',
+        'miR-2': 'miR-2-5p',
+        # Añadir más conversiones según miRBase v.21
+    }
 
-# Función placeholder para convertir los nombres de los miRNAs (esto debe ser reemplazado por la lógica real)
-def miRNA_converter(miRs, target_version="v21", exact=True, verbose=True):
-    # Este es solo un placeholder que representa una función o mapa que convierte los nombres de los miRNAs.
-    # Debes reemplazar esto con una implementación que realice la conversión a miRBase v21.
-    return pd.DataFrame({
-        0: miRs,
-        1: [miR + "_v21" for miR in miRs]  # Simula la conversión agregando "_v21" a cada miRNA
-    }).values
+    # Convertir los nombres de miRNAs usando el diccionario
+    converted_miRs = [conversion_dict.get(miR, miR) for miR in miRs]
 
-# Ejemplo de uso
-# miRs = ["miRNA1", "miRNA2.1", "miRNA3"]
-# miRnames_v21 = ptc_mirv21(miRs, miRNA_converter)
-# print(miRnames_v21)
+    # Manejo de conversiones fallidas (mantener el nombre original)
+    failed_indices = [i for i, x in enumerate(converted_miRs) if x is None]
+    if failed_indices:
+        for i in failed_indices:
+            converted_miRs[i] = miRs[i]
+
+    # Seleccionar la primera coincidencia si hay múltiples
+    converted_miRs = [re.sub(r"&.*", "", miR) for miR in converted_miRs]
+
+    return converted_miRs
