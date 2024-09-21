@@ -1,4 +1,5 @@
 import numpy as np
+
 def InterList_toMatrix(InterList):
     # Eliminar elementos NA y None de InterList
     InterList = {k: v for k, v in InterList.items() if v is not None and not any([x is None for x in v])}
@@ -19,14 +20,3 @@ def InterList_toMatrix(InterList):
 
     # Etiquetar columnas
     return np.array(InterMatrix, dtype=object)
-
-# Ejemplo de uso con un diccionario similar a InterList
-example_InterList = {
-    'mRNA1': ['miR1', 'miR2'],
-    'mRNA2': ['miR3'],
-    'mRNA3': ['miR4', 'miR5']
-}
-
-# Ejecutar la función y mostrar el resultado
-result_matrix = InterList_toMatrix(example_InterList)
-print(result_matrix)
