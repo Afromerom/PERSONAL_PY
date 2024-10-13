@@ -13,6 +13,9 @@ Este documento proporciona un breve resumen de las funciones convertidas de R a 
 
 ## Funciones Convertidas
 
+
+
+    
 ```python 
 confirmed_from_list
 ```
