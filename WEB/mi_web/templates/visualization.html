@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualization</title>
+    <title>miRNA Matches</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,7 +11,7 @@
             margin-top: 50px;
         }
         table {
-            width: 50%;
+            width: 80%;
             margin: 0 auto;
             border-collapse: collapse;
         }
@@ -22,24 +22,54 @@
             padding: 10px;
             text-align: center;
         }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
     </style>
 </head>
 <body>
-    <h1>Data Visualization</h1>
+    <h1>The multiple matched miRNAs are listed below:</h1>
     <table>
         <thead>
             <tr>
-                <th>Gene</th>
-                <th>Value</th>
+                <th>Original</th>
+                <th>Version v21</th>
+                <th>Accession</th>
             </tr>
         </thead>
         <tbody>
-            {% for row in table_data %}
-            <tr>
-                <td>{{ row.name }}</td>
-                <td>{{ row.value }}</td>
-            </tr>
-            {% endfor %}
+            <tr><td>mml-let-7d</td><td>mml-let-7d&amp;mml-let-7d</td><td>MI0007575&amp;MIMAT0006154</td></tr>
+            <tr><td>ptr-let-7d</td><td>ptr-let-7d&amp;ptr-let-7d</td><td>MI0008402&amp;MIMAT0007939</td></tr>
+            <tr><td>ptr-let-7c</td><td>ptr-let-7c&amp;ptr-let-7c</td><td>MI0008401&amp;MIMAT0007938</td></tr>
+            <tr><td>ptr-let-7b</td><td>ptr-let-7b&amp;ptr-let-7b</td><td>MI0008400&amp;MIMAT0007937</td></tr>
+            <tr><td>ptr-let-7g</td><td>ptr-let-7g&amp;ptr-let-7g</td><td>MI0008406&amp;MIMAT0007942</td></tr>
+            <tr><td>ptr-let-7i</td><td>ptr-let-7i&amp;ptr-let-7i</td><td>MI0008407&amp;MIMAT0007943</td></tr>
+            <tr><td>ptr-let-7e</td><td>ptr-let-7e&amp;ptr-let-7e</td><td>MI0008403&amp;MIMAT0007940</td></tr>
+            <tr><td>cfa-let-7c</td><td>cfa-let-7c&amp;cfa-let-7c</td><td>MI0008076&amp;MIMAT0006669</td></tr>
+            <tr><td>cfa-let-7e</td><td>cfa-let-7e&amp;cfa-let-7e</td><td>MI0008004&amp;MIMAT0006608</td></tr>
+            <tr><td>cfa-let-7f</td><td>cfa-let-7f&amp;cfa-let-7f</td><td>MI0008006&amp;MIMAT0006610</td></tr>
+            <tr><td>cfa-let-7g</td><td>cfa-let-7g&amp;cfa-let-7g</td><td>MI0008036&amp;MIMAT0006637</td></tr>
+            <tr><td>cfa-let-7j</td><td>cfa-let-7j&amp;cfa-let-7j</td><td>MI0008189&amp;MIMAT0006763</td></tr>
+            <tr><td>cfa-let-7b</td><td>cfa-let-7b&amp;cfa-let-7b</td><td>MI0010329&amp;MIMAT0009836</td></tr>
+            <tr><td>bta-let-7g</td><td>bta-let-7g&amp;bta-let-7g</td><td>MI0005051&amp;MIMAT0003838</td></tr>
+            <tr><td>bta-let-7i</td><td>bta-let-7i&amp;bta-let-7i</td><td>MI0005065&amp;MIMAT0003851</td></tr>
+            <tr><td>bta-let-7b</td><td>bta-let-7b&amp;bta-let-7b</td><td>MI0005453&amp;MIMAT0004331</td></tr>
+            <tr><td>bta-let-7e</td><td>bta-let-7e&amp;bta-let-7e</td><td>MI0005455&amp;MIMAT0004333</td></tr>
+            <tr><td>bta-let-7d</td><td>bta-let-7d&amp;bta-let-7d</td><td>MI0005026&amp;MIMAT0003810</td></tr>
+            <tr><td>bta-let-7c</td><td>bta-let-7c&amp;bta-let-7c</td><td>MI0005454&amp;MIMAT0004332</td></tr>
+            <tr><td>mmu-let-7k</td><td>mmu-let-7k&amp;mmu-let-7k</td><td>MI0022352&amp;MIMAT0025580</td></tr>
+            <tr><td>mdo-let-7d</td><td>mdo-let-7d&amp;mdo-let-7d</td><td>MI0005362&amp;MIMAT0004172</td></tr>
+            <tr><td>mdo-let-7b</td><td>mdo-let-7b&amp;mdo-let-7b</td><td>MI0005351&amp;MIMAT0004162</td></tr>
+            <tr><td>gga-let-7b</td><td>gga-let-7b&amp;gga-let-7b</td><td>MI0001172&amp;MIMAT0001102</td></tr>
+            <tr><td>gga-let-7i</td><td>gga-let-7i&amp;gga-let-7i</td><td>MI0001168&amp;MIMAT0001098</td></tr>
+            <tr><td>gga-let-7d</td><td>gga-let-7d&amp;gga-let-7d</td><td>MI0001232&amp;MIMAT0001161</td></tr>
+            <tr><td>xtr-let-7i</td><td>xtr-let-7i&amp;xtr-let-7i</td><td>MI0004889&amp;MIMAT0003647</td></tr>
+            <tr><td>xtr-let-7a</td><td>xtr-let-7a&amp;xtr-let-7a</td><td>MI0004908&amp;MIMAT0003667</td></tr>
+            <tr><td>xtr-let-7b</td><td>xtr-let-7b&amp;xtr-let-7b</td><td>MI0004787&amp;MIMAT0003550</td></tr>
+            <tr><td>xtr-let-7c</td><td>xtr-let-7c&amp;xtr-let-7c</td><td>MI0004886&amp;MIMAT0003644</td></tr>
+            <tr><td>xtr-let-7f</td><td>xtr-let-7f&amp;xtr-let-7f</td><td>MI0004887&amp;MIMAT0003645</td></tr>
+            <tr><td>xtr-let-7g</td><td>xtr-let-7g&amp;xtr-let-7g</td><td>MI0004888&amp;MIMAT0003646</td></tr>
         </tbody>
     </table>
 </body>
