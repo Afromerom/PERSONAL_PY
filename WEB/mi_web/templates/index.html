@@ -85,6 +85,19 @@
             color: black;
             font-weight: bold;
         }
+        /* Estilo para el nuevo botón azul */
+        .run-algorithm {
+            background-color: #1E90FF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .run-algorithm:hover {
+            background-color: #1C86EE;
+        }
     </style>
     <script>
         function simulateProgress(id, percent) {
@@ -114,7 +127,7 @@
     </script>
 </head>
 <body>
-    <h1>PTC</h1>  <!-- Título principal cambiado a "PTC" -->
+    <h1>PTC</h1>
 
     <form method="post" enctype="multipart/form-data">
         <label for="file-upload-mrna" class="custom-file-upload">
@@ -143,6 +156,11 @@
         <div class="progress-bar-fill"></div>
         <div class="progress-text">0%</div>
     </div>
+
+    <!-- Botón para correr el algoritmo -->
+    <form action="/run-algorithm" method="GET">
+        <button type="submit" class="run-algorithm">Run Algorithm</button>
+    </form>
 
     {% if mrna_table and mirna_table %}
         <h2>mRNA CSV Content:</h2>
