@@ -3,60 +3,45 @@ import pandas as pd
 import time
 
 app = Flask(__name__)
-app.secret_key = 'supersecretkey'  # Necesario para manejar sesiones
-
-# Usuario y contraseña permitidos
-USERNAME = 'sa'
-PASSWORD = 'Krypton'
+app.secret_key = 'supersecretkey'
 
 # Variables globales para almacenar los datos de mRNA y miRNA
 mrna_data = None
 mirna_data = None
 
-# Ruta de inicio de sesión
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        
-        # Verifica usuario y contraseña
-        if username == USERNAME and password == PASSWORD:
+        if username == 'sa' and password == 'Krypton':
             session['logged_in'] = True
-            return redirect(url_for('index'))  # Redirige a la página principal
+            return redirect(url_for('index'))
         else:
             return "Login incorrecto. Inténtalo de nuevo."
     
     return render_template('login.html')
 
-# Ruta protegida para la página principal (carga de archivos)
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if not session.get('logged_in'):
-        return redirect(url_for('login'))  # Redirige al login si no está autenticado
-
+        return redirect(url_for('login'))
+    
     global mrna_data, mirna_data
     if request.method == 'POST':
-        # Cargar archivo mRNA
         mrna_file = request.files.get('mrna_file')
         if mrna_file and mrna_file.filename.endswith('.csv'):
             mrna_data = pd.read_csv(mrna_file)
 
-        # Cargar archivo miRNA
         mirna_file = request.files.get('mirna_file')
         if mirna_file and mirna_file.filename.endswith('.csv'):
             mirna_data = pd.read_csv(mirna_file)
 
-        # Verificar si ambos archivos han sido cargados
         if mrna_data is not None and mirna_data is not None:
-            # Obtener las primeras 5 filas y 4 columnas de ambos archivos
             mrna_preview = mrna_data.iloc[:5, :4]
             mirna_preview = mirna_data.iloc[:5, :4]
-
-            # Simular tiempo de carga (progreso de 1 segundo por ejemplo)
             time.sleep(1)
 
-            # Renderizar las tablas en la página HTML
             return render_template('index.html',
                                    mrna_table=mrna_preview.to_html(classes='data', header=True),
                                    mirna_table=mirna_preview.to_html(classes='data', header=True),
@@ -65,10 +50,14 @@ def index():
 
     return render_template('index.html', mrna_loaded=False, mirna_loaded=False)
 
-# Ruta para cerrar sesión
+# Nueva ruta para la página del algoritmo
+@app.route('/run-algorithm')
+def run_algorithm():
+    return render_template('run_algorithm.html')  # Deberás crear el archivo run_algorithm.html
+
 @app.route('/logout')
 def logout():
-    session.clear()  # Borra todos los datos de la sesión
+    session.clear()
     return redirect(url_for('login'))
 
 if __name__ == "__main__":
