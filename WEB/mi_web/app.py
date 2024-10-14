@@ -68,7 +68,7 @@ def index():
 # Ruta para cerrar sesión
 @app.route('/logout')
 def logout():
-    session['logged_in'] = False
+    session.clear()  # Borra todos los datos de la sesión
     return redirect(url_for('login'))
 
 if __name__ == "__main__":
