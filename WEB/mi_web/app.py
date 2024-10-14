@@ -50,10 +50,16 @@ def index():
 
     return render_template('index.html', mrna_loaded=False, mirna_loaded=False)
 
-# Nueva ruta para la página del algoritmo
-@app.route('/run-algorithm')
+# Ruta para manejar tanto GET como POST en /run-algorithm
+@app.route('/run-algorithm', methods=['GET', 'POST'])
 def run_algorithm():
-    return render_template('run_algorithm.html')  # Deberás crear el archivo run_algorithm.html
+    # Si es POST, procesamos la solicitud si se requiere
+    if request.method == 'POST':
+        # Aquí puedes agregar cualquier lógica adicional para procesar datos si es necesario
+        pass
+    
+    # De cualquier manera, renderizamos la página de algoritmo
+    return render_template('run_algorithm.html')
 
 @app.route('/logout')
 def logout():

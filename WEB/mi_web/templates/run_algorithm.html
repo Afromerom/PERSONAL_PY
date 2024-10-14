@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Running Algorithm</title>
+    <title>Run Algorithm</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,10 +13,82 @@
         h1 {
             color: #333;
         }
+        #log-container {
+            width: 80%;
+            height: 200px;
+            border: 1px solid #ccc;
+            margin: 0 auto;
+            padding: 10px;
+            background-color: #f9f9f9;
+            overflow-y: scroll;
+            font-family: monospace;
+            white-space: pre-wrap;
+            text-align: left;
+        }
     </style>
 </head>
 <body>
-    <h1>Algorithm is Running...</h1>
-    <p>The PTC algorithm is currently being executed. Please wait for the results.</p>
+    <h1>Running Algorithm...</h1>
+
+    <div id="log-container"></div>
+
+    <script>
+        const logContainer = document.getElementById('log-container');
+        const lines = [
+            "Current mRNA  = { CLCA2 }",
+            "(PTC) nSets to explore in current level = { 1 }",
+            "----------------------PTC.findParents MODEL REJECTED------------------------",
+            "Current mRNA  = { NEK10 }",
+            "(PTC) nSets to explore in current level = { 1 }",
+            "NEK10  PTC.findParents  = { 1 }",
+            "Current mRNA  = { HOXB13 }",
+            "(PTC) nSets to explore in current level = { 1 }",
+            "HOXB13  PTC.findParents  = { 1, 2 }",
+            "Current mRNA  = { ONECUT2 }",
+            "(PTC) nSets to explore in current level = { 1 }",
+            "(PTC) nSets to explore in current level = { 4 }",
+            "(PTC) nSets to explore in current level = { 6 }",
+            "(PTC) nSets to REMOVE in current level = { 2 }",
+            "(PTC) nSets to explore in current level = { 2 }",
+            "ONECUT2  PTC.findParents  = { 2, 4 }",
+            "Current mRNA  = { PI16 }",
+            "(PTC) nSets to explore in current level = { 1 }",
+            "----------------------PTC.findParents MODEL REJECTED------------------------",
+            "Current mRNA  = { SLC6A4 }",
+            "(PTC) nSets to explore in current level = { 1 }",
+            "SLC6A4  PTC.findParents  = { 1, 2 }",
+            "Current mRNA  = { ELOVL2 }",
+            "(PTC) nSets to explore in current level = { 1 }",
+            "(PTC) nSets to explore in current level = { 2 }"
+        ];
+
+        let index = 0;
+        const delay = 20;  // 0.02 segundos = 20 ms
+        const maxLines = 10;  // Máximo de 10 líneas visibles
+
+        function addLine() {
+            if (index < lines.length) {
+                // Añadir la línea actual
+                logContainer.innerHTML += lines[index] + "\n";
+                index++;
+
+                // Mantener solo las últimas 10 líneas visibles
+                const logLines = logContainer.innerHTML.split("\n");
+                if (logLines.length > maxLines) {
+                    logContainer.innerHTML = logLines.slice(logLines.length - maxLines).join("\n");
+                }
+
+                // Hacer scroll automáticamente hacia abajo
+                logContainer.scrollTop = logContainer.scrollHeight;
+
+                // Llamar a la función nuevamente después del retraso
+                setTimeout(addLine, delay);
+            }
+        }
+
+        // Iniciar el proceso de añadir líneas
+        addLine();
+    </script>
+
 </body>
 </html>
