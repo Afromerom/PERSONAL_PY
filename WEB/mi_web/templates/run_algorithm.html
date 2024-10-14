@@ -1085,7 +1085,11 @@
                 setTimeout(addLine, delay);
             }
         }
-
+        // Verificar si ya se ha corrido el algoritmo
+        if (!sessionStorage.getItem('algorithmRan')) {
+            addLine();  // Ejecutar el código solo si no ha corrido
+            sessionStorage.setItem('algorithmRan', 'true');  // Marcar como ejecutado
+        }
         // Función para descargar el archivo .txt con la palabra "Hola"
         function downloadFile() {
           const element = document.createElement('a');
