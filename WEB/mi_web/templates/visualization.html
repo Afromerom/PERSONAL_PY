@@ -26,6 +26,21 @@
             background-color: #4CAF50;
             color: white;
         }
+        .button-container {
+            margin-top: 20px;
+        }
+        .button-container button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .button-container button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
@@ -72,5 +87,11 @@
             <tr><td>xtr-let-7g</td><td>xtr-let-7g&amp;xtr-let-7g</td><td>MI0004888&amp;MIMAT0003646</td></tr>
         </tbody>
     </table>
+
+    <!-- Contenedor para el botón de salida -->
+    <div class="button-container">
+        <button onclick="window.location.href='/logout'">Exit</button>
+    </div>
+
 </body>
 </html>
