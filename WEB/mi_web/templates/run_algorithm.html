@@ -64,19 +64,12 @@
 
         let index = 0;
         const delay = 20;  // 0.02 segundos = 20 ms
-        const maxLines = 10;  // Máximo de 10 líneas visibles
 
         function addLine() {
             if (index < lines.length) {
                 // Añadir la línea actual
                 logContainer.innerHTML += lines[index] + "\n";
                 index++;
-
-                // Mantener solo las últimas 10 líneas visibles
-                const logLines = logContainer.innerHTML.split("\n");
-                if (logLines.length > maxLines) {
-                    logContainer.innerHTML = logLines.slice(logLines.length - maxLines).join("\n");
-                }
 
                 // Hacer scroll automáticamente hacia abajo
                 logContainer.scrollTop = logContainer.scrollHeight;
@@ -92,3 +85,4 @@
 
 </body>
 </html>
+
