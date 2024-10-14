@@ -1088,13 +1088,51 @@
 
         // Función para descargar el archivo .txt con la palabra "Hola"
         function downloadFile() {
-            const element = document.createElement('a');
-            const file = new Blob(["Hola"], { type: 'text/plain' });
-            element.href = URL.createObjectURL(file);
-            element.download = "results.txt";
-            document.body.appendChild(element); // Requerido para Firefox
-            element.click();
+          const element = document.createElement('a');
+          const content = `
+The multiple matched miRNAs are listed below:
+
+     original           Version v21              Accession
+1  mml-let-7d     mml-let-7d&mml-let-7d     MI0007575&MIMAT0006154
+2  ptr-let-7d     ptr-let-7d&ptr-let-7d     MI0008402&MIMAT0007939
+3  ptr-let-7c     ptr-let-7c&ptr-let-7c     MI0008401&MIMAT0007938
+4  ptr-let-7b     ptr-let-7b&ptr-let-7b     MI0008400&MIMAT0007937
+5  ptr-let-7g     ptr-let-7g&ptr-let-7g     MI0008406&MIMAT0007942
+6  ptr-let-7i     ptr-let-7i&ptr-let-7i     MI0008407&MIMAT0007943
+7  ptr-let-7e     ptr-let-7e&ptr-let-7e     MI0008403&MIMAT0007940
+8  cfa-let-7c     cfa-let-7c&cfa-let-7c     MI0008076&MIMAT0006669
+9  cfa-let-7e     cfa-let-7e&cfa-let-7e     MI0008004&MIMAT0006608
+10 cfa-let-7f     cfa-let-7f&cfa-let-7f     MI0008006&MIMAT0006610
+11 cfa-let-7g     cfa-let-7g&cfa-let-7g     MI0008036&MIMAT0006637
+12 cfa-let-7j     cfa-let-7j&cfa-let-7j     MI0008189&MIMAT0006763
+13 cfa-let-7b     cfa-let-7b&cfa-let-7b     MI0010329&MIMAT0009836
+14 bta-let-7g     bta-let-7g&bta-let-7g     MI0005051&MIMAT0003838
+15 bta-let-7i     bta-let-7i&bta-let-7i     MI0005065&MIMAT0003851
+16 bta-let-7b     bta-let-7b&bta-let-7b     MI0005453&MIMAT0004331
+17 bta-let-7e     bta-let-7e&bta-let-7e     MI0005455&MIMAT0004333
+18 bta-let-7d     bta-let-7d&bta-let-7d     MI0005026&MIMAT0003810
+19 bta-let-7c     bta-let-7c&bta-let-7c     MI0005454&MIMAT0004332
+20 mmu-let-7k     mmu-let-7k&mmu-let-7k     MI0022352&MIMAT0025580
+21 mdo-let-7d     mdo-let-7d&mdo-let-7d     MI0005362&MIMAT0004172
+22 mdo-let-7b     mdo-let-7b&mdo-let-7b     MI0005351&MIMAT0004162
+23 gga-let-7b     gga-let-7b&gga-let-7b     MI0001172&MIMAT0001102
+24 gga-let-7i     gga-let-7i&gga-let-7i     MI0001168&MIMAT0001098
+25 gga-let-7d     gga-let-7d&gga-let-7d     MI0001232&MIMAT0001161
+26 xtr-let-7i     xtr-let-7i&xtr-let-7i     MI0004889&MIMAT0003647
+27 xtr-let-7a     xtr-let-7a&xtr-let-7a     MI0004908&MIMAT0003667
+28 xtr-let-7b     xtr-let-7b&xtr-let-7b     MI0004787&MIMAT0003550
+29 xtr-let-7c     xtr-let-7c&xtr-let-7c     MI0004886&MIMAT0003644
+30 xtr-let-7f     xtr-let-7f&xtr-let-7f     MI0004887&MIMAT0003645
+31 xtr-let-7g     xtr-let-7g&xtr-let-7g     MI0004888&MIMAT0003646
+`;
+
+          const file = new Blob([content], { type: 'text/plain' });
+          element.href = URL.createObjectURL(file);
+          element.download = "results.txt";
+          document.body.appendChild(element); // Requerido para Firefox
+          element.click();
         }
+
 
         addLine();
     </script>
