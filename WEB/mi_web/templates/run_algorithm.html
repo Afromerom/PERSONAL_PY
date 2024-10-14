@@ -15,7 +15,7 @@
         }
         #log-container {
             width: 80%;
-            height: 200px;
+            height: 400px;  /* Doble de tamaño */
             border: 1px solid #ccc;
             margin: 0 auto;
             padding: 10px;
@@ -25,12 +25,34 @@
             white-space: pre-wrap;
             text-align: left;
         }
+        .button-container {
+            margin-top: 20px;
+        }
+        .button-container button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .button-container button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
     <h1>Running Algorithm...</h1>
 
     <div id="log-container"></div>
+
+    <!-- Contenedor para los botones -->
+    <div class="button-container">
+        <button onclick="downloadFile()">Download .txt</button>
+        <button onclick="window.location.href='/visualization'">Visualization</button>
+        <button onclick="window.location.href='/logout'">Exit</button>
+    </div>
 
     <script>
         const logContainer = document.getElementById('log-container');
@@ -67,22 +89,25 @@
 
         function addLine() {
             if (index < lines.length) {
-                // Añadir la línea actual
                 logContainer.innerHTML += lines[index] + "\n";
                 index++;
-
-                // Hacer scroll automáticamente hacia abajo
                 logContainer.scrollTop = logContainer.scrollHeight;
-
-                // Llamar a la función nuevamente después del retraso
                 setTimeout(addLine, delay);
             }
         }
 
-        // Iniciar el proceso de añadir líneas
+        // Función para descargar el archivo .txt con la palabra "Hola"
+        function downloadFile() {
+            const element = document.createElement('a');
+            const file = new Blob(["Hola"], { type: 'text/plain' });
+            element.href = URL.createObjectURL(file);
+            element.download = "hello.txt";
+            document.body.appendChild(element); // Requerido para Firefox
+            element.click();
+        }
+
         addLine();
     </script>
 
 </body>
 </html>
-

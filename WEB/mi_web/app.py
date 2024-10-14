@@ -61,6 +61,18 @@ def run_algorithm():
     # De cualquier manera, renderizamos la página de algoritmo
     return render_template('run_algorithm.html')
 
+@app.route('/visualization')
+def visualization():
+    # Simulando una tabla de ejemplo
+    table_data = [
+        {'name': 'Gene A', 'value': 10},
+        {'name': 'Gene B', 'value': 20},
+        {'name': 'Gene C', 'value': 30},
+        {'name': 'Gene D', 'value': 40},
+    ]
+    return render_template('visualization.html', table_data=table_data)
+
+
 @app.route('/logout')
 def logout():
     session.clear()
