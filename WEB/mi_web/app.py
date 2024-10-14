@@ -1,15 +1,40 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 import pandas as pd
 import time
 
 app = Flask(__name__)
+app.secret_key = 'supersecretkey'  # Necesario para manejar sesiones
+
+# Usuario y contraseña permitidos
+USERNAME = 'sa'
+PASSWORD = 'Krypton'
 
 # Variables globales para almacenar los datos de mRNA y miRNA
 mrna_data = None
 mirna_data = None
 
+# Ruta de inicio de sesión
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        
+        # Verifica usuario y contraseña
+        if username == USERNAME and password == PASSWORD:
+            session['logged_in'] = True
+            return redirect(url_for('index'))  # Redirige a la página principal
+        else:
+            return "Login incorrecto. Inténtalo de nuevo."
+    
+    return render_template('login.html')
+
+# Ruta protegida para la página principal (carga de archivos)
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))  # Redirige al login si no está autenticado
+
     global mrna_data, mirna_data
     if request.method == 'POST':
         # Cargar archivo mRNA
@@ -40,6 +65,11 @@ def index():
 
     return render_template('index.html', mrna_loaded=False, mirna_loaded=False)
 
+# Ruta para cerrar sesión
+@app.route('/logout')
+def logout():
+    session['logged_in'] = False
+    return redirect(url_for('login'))
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)
