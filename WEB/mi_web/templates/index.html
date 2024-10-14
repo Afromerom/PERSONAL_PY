@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PTC</title>  <!-- Título cambiado a "PTC" -->
+    <title>PTC</title>
     <style>
         table.data {
             width: 100%;
@@ -85,6 +85,10 @@
             color: black;
             font-weight: bold;
         }
+        .button-container {
+            display: inline-block;
+            margin-top: 20px;
+        }
         /* Estilo para el nuevo botón azul */
         .run-algorithm {
             background-color: #1E90FF;
@@ -93,7 +97,8 @@
             padding: 10px 20px;
             cursor: pointer;
             border-radius: 5px;
-            margin-top: 20px;
+            margin-left: 5px;
+            display: inline-block;
         }
         .run-algorithm:hover {
             background-color: #1C86EE;
@@ -141,6 +146,9 @@
         <input id="file-upload-mirna" type="file" name="mirna_file">
         
         <input type="submit" value="Upload Files">
+
+        <!-- Botón para correr el algoritmo, al lado del botón de subir archivos -->
+        <button type="submit" formaction="/run-algorithm" class="run-algorithm">Run Algorithm</button>
     </form>
 
     <!-- Leyenda y barra de progreso para mRNA -->
@@ -156,11 +164,6 @@
         <div class="progress-bar-fill"></div>
         <div class="progress-text">0%</div>
     </div>
-
-    <!-- Botón para correr el algoritmo -->
-    <form action="/run-algorithm" method="GET">
-        <button type="submit" class="run-algorithm">Run Algorithm</button>
-    </form>
 
     {% if mrna_table and mirna_table %}
         <h2>mRNA CSV Content:</h2>
